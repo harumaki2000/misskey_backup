@@ -17,7 +17,7 @@ cd /home/misskey/misskey
 curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"📌 データベースのバックアップを開始します。\"}" $DISCORD_WEBHOOK_URL
 
 # バックアップを作成
-echo $PASSWORD | sudo -S docker compose exec db pg_dump -U misskey-user misskey > "${BACKUP_DIR}/${BACKUP_FILE}"
+echo $PASSWORD | sudo -S docker compose exec コンテナ名 pg_dump -U DBユーザー名 DB名 > "${BACKUP_DIR}/${BACKUP_FILE}"
 
 if [ $? -eq 0 ]; then
     echo "Database backup successful: ${BACKUP_FILE}"
