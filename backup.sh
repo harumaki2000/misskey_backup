@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# バックアップ保存ディレクトリとファイル名
-BACKUP_FILE="db_dump_$(date +%Y%m%d_%H%M%S).sql"
-BACKUP_DIR="/home/misskey/mi_backup"
+BACKUP_FILE="db_dump_$(date +%Y%m%d_%H%M%S).sql" # バックアップファイル名
+BACKUP_DIR="/home/misskey/mi_backup" #バックアップファイルの一時的な保存先
+DOCKER_DIR="/home/misskey/misskey" # docker-compose.ymlがあるディレクトリ
+CONTAINER_NAME="containar_name" # 
 
 # Discord Webhook URL
 DISCORD_WEBHOOK_URL="your_discord_webhook_url"
@@ -10,8 +11,8 @@ DISCORD_WEBHOOK_URL="your_discord_webhook_url"
 # sudoパスワード
 PASSWORD="your_password"
 
-# バックアップフォルダに移動
-cd /home/misskey/misskey
+# docker-compose.ymlがあるディレクトリに移動
+cd "${DOCKER_DIR}"
 
 # バックアップ開始通知
 curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"📌 データベースのバックアップを開始します。\"}" $DISCORD_WEBHOOK_URL
